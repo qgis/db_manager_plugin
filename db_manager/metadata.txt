@@ -1,6 +1,6 @@
 [general]
-name=DB Manager
-description=Manage your databases within QGIS.
+name=DB Manager (legacy)
+description=Manage your databases within QGIS. This is a copy of the legacy DB manager plugin which used to be installed by default. It is currently unmaintained.
 category=Database
 version=1.0.0
 qgisMinimumVersion=4.0
