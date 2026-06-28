@@ -1,5 +1,5 @@
 [general]
-name=DB Manager (legacy)
+name=DB Manager (community)
 description=Manage your databases within QGIS.
 about=Manage your databases within QGIS. This is a copy of the legacy DB manager plugin which used to be installed by default. It is currently unmaintained.
 tracker=https://github.com/qgis/db_manager_plugin
