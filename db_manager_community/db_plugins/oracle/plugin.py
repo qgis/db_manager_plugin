@@ -244,74 +244,74 @@ class ORDatabase(Database):
         return vlayer
 
     def registerDatabaseActions(self, mainWindow):
-        action = QAction(QApplication.translate("DBManagerPlugin", "&Re-connect"), self)
+        action = QAction(QApplication.translate("DBManagerCommunityPlugin", "&Re-connect"), self)
         mainWindow.registerAction(
             action,
-            QApplication.translate("DBManagerPlugin", "&Database"),
+            QApplication.translate("DBManagerCommunityPlugin", "&Database"),
             self.reconnectActionSlot,
         )
 
         if self.schemas():
             action = QAction(
-                QApplication.translate("DBManagerPlugin", "&Create Schema…"), self
+                QApplication.translate("DBManagerCommunityPlugin", "&Create Schema…"), self
             )
             mainWindow.registerAction(
                 action,
-                QApplication.translate("DBManagerPlugin", "&Schema"),
+                QApplication.translate("DBManagerCommunityPlugin", "&Schema"),
                 self.createSchemaActionSlot,
             )
             action = QAction(
-                QApplication.translate("DBManagerPlugin", "&Delete (Empty) Schema…"),
+                QApplication.translate("DBManagerCommunityPlugin", "&Delete (Empty) Schema…"),
                 self,
             )
             mainWindow.registerAction(
                 action,
-                QApplication.translate("DBManagerPlugin", "&Schema"),
+                QApplication.translate("DBManagerCommunityPlugin", "&Schema"),
                 self.deleteSchemaActionSlot,
             )
 
         action = QAction(
-            QApplication.translate("DBManagerPlugin", "Delete Selected Item"), self
+            QApplication.translate("DBManagerCommunityPlugin", "Delete Selected Item"), self
         )
         mainWindow.registerAction(action, None, self.deleteActionSlot)
         action.setShortcuts(QKeySequence.StandardKey.Delete)
 
         action = QAction(
             QgsApplication.getThemeIcon("/mActionCreateTable.svg"),
-            QApplication.translate("DBManagerPlugin", "&Create Table…"),
+            QApplication.translate("DBManagerCommunityPlugin", "&Create Table…"),
             self,
         )
         mainWindow.registerAction(
             action,
-            QApplication.translate("DBManagerPlugin", "&Table"),
+            QApplication.translate("DBManagerCommunityPlugin", "&Table"),
             self.createTableActionSlot,
         )
         action = QAction(
             QgsApplication.getThemeIcon("/mActionEditTable.svg"),
-            QApplication.translate("DBManagerPlugin", "&Edit Table…"),
+            QApplication.translate("DBManagerCommunityPlugin", "&Edit Table…"),
             self,
         )
         mainWindow.registerAction(
             action,
-            QApplication.translate("DBManagerPlugin", "&Table"),
+            QApplication.translate("DBManagerCommunityPlugin", "&Table"),
             self.editTableActionSlot,
         )
         action = QAction(
             QgsApplication.getThemeIcon("/mActionDeleteTable.svg"),
-            QApplication.translate("DBManagerPlugin", "&Delete Table/View…"),
+            QApplication.translate("DBManagerCommunityPlugin", "&Delete Table/View…"),
             self,
         )
         mainWindow.registerAction(
             action,
-            QApplication.translate("DBManagerPlugin", "&Table"),
+            QApplication.translate("DBManagerCommunityPlugin", "&Table"),
             self.deleteTableActionSlot,
         )
         action = QAction(
-            QApplication.translate("DBManagerPlugin", "&Empty Table…"), self
+            QApplication.translate("DBManagerCommunityPlugin", "&Empty Table…"), self
         )
         mainWindow.registerAction(
             action,
-            QApplication.translate("DBManagerPlugin", "&Table"),
+            QApplication.translate("DBManagerCommunityPlugin", "&Table"),
             self.emptyTableActionSlot,
         )
 
@@ -393,7 +393,7 @@ class ORTable(Table):
             index_action = parts[2]
 
             msg = QApplication.translate(
-                "DBManagerPlugin",
+                "DBManagerCommunityPlugin",
                 f"Do you want to {index_action} index {index_name}?",
             )
             QApplication.restoreOverrideCursor()
@@ -401,7 +401,7 @@ class ORTable(Table):
                 if (
                     QMessageBox.question(
                         None,
-                        QApplication.translate("DBManagerPlugin", "Table Index"),
+                        QApplication.translate("DBManagerCommunityPlugin", "Table Index"),
                         msg,
                         QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
                     )
@@ -696,15 +696,15 @@ class ORTableConstraint(TableConstraint):
 
     def type2String(self):
         if self.type == ORTableConstraint.TypeCheck:
-            return QApplication.translate("DBManagerPlugin", "Check")
+            return QApplication.translate("DBManagerCommunityPlugin", "Check")
         if self.type == ORTableConstraint.TypePrimaryKey:
-            return QApplication.translate("DBManagerPlugin", "Primary key")
+            return QApplication.translate("DBManagerCommunityPlugin", "Primary key")
         if self.type == ORTableConstraint.TypeForeignKey:
-            return QApplication.translate("DBManagerPlugin", "Foreign key")
+            return QApplication.translate("DBManagerCommunityPlugin", "Foreign key")
         if self.type == ORTableConstraint.TypeUnique:
-            return QApplication.translate("DBManagerPlugin", "Unique")
+            return QApplication.translate("DBManagerCommunityPlugin", "Unique")
 
-        return QApplication.translate("DBManagerPlugin", "Unknown")
+        return QApplication.translate("DBManagerCommunityPlugin", "Unknown")
 
     def fields(self):
         """Hack to make edit dialog box work"""

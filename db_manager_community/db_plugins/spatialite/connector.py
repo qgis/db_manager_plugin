@@ -41,7 +41,7 @@ class SpatiaLiteDBConnector(DBConnector):
         self.dbname = uri.database()
         if not QFile.exists(self.dbname):
             raise ConnectionError(
-                QApplication.translate("DBManagerPlugin", '"{0}" not found').format(
+                QApplication.translate("DBManagerCommunityPlugin", '"{0}" not found').format(
                     self.dbname
                 )
             )

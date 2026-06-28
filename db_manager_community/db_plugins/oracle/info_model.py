@@ -49,22 +49,22 @@ class ORDatabaseInfo(DatabaseInfo):
         if self.db.connector.host != "":
             tbl.append(
                 (
-                    QApplication.translate("DBManagerPlugin", "Host:"),
+                    QApplication.translate("DBManagerCommunityPlugin", "Host:"),
                     self.db.connector.host,
                 )
             )
         tbl.append(
             (
-                QApplication.translate("DBManagerPlugin", "Database:"),
+                QApplication.translate("DBManagerCommunityPlugin", "Database:"),
                 self.db.connector.dbname,
             )
         )
         tbl.append(
-            (QApplication.translate("DBManagerPlugin", "User:"), self.db.connector.user)
+            (QApplication.translate("DBManagerCommunityPlugin", "User:"), self.db.connector.user)
         )
         tbl.append(
             (
-                QApplication.translate("DBManagerPlugin", "SQLite list tables cache:"),
+                QApplication.translate("DBManagerCommunityPlugin", "SQLite list tables cache:"),
                 "Enabled" if self.db.connector.hasCache else "Unavailable",
             )
         )
@@ -78,14 +78,14 @@ class ORDatabaseInfo(DatabaseInfo):
         if not info:
             return
 
-        tbl = [(QApplication.translate("DBManagerPlugin", "Oracle Spatial:"), info[0])]
+        tbl = [(QApplication.translate("DBManagerCommunityPlugin", "Oracle Spatial:"), info[0])]
         ret.append(HtmlTable(tbl))
 
         if not self.db.connector.has_geometry_columns:
             ret.append(
                 HtmlParagraph(
                     QApplication.translate(
-                        "DBManagerPlugin",
+                        "DBManagerCommunityPlugin",
                         "<warning> ALL_SDO_GEOM_METADATA"
                         " view doesn't exist!\n"
                         "This view is essential for many"
@@ -132,20 +132,20 @@ class ORTableInfo(TableInfo):
             self.table.blockSignals(False)
 
         relation_type = (
-            QApplication.translate("DBManagerPlugin", self.table.objectType)
+            QApplication.translate("DBManagerCommunityPlugin", self.table.objectType)
             if isinstance(self.table.objectType, str)
-            else QApplication.translate("DBManagerPlugin", "Unknown")
+            else QApplication.translate("DBManagerCommunityPlugin", "Unknown")
         )
 
         tbl = [
-            (QApplication.translate("DBManagerPlugin", "Object type:"), relation_type),
-            (QApplication.translate("DBManagerPlugin", "Owner:"), self.table.owner),
+            (QApplication.translate("DBManagerCommunityPlugin", "Object type:"), relation_type),
+            (QApplication.translate("DBManagerCommunityPlugin", "Owner:"), self.table.owner),
         ]
 
         if self.table.comment:
             tbl.append(
                 (
-                    QApplication.translate("DBManagerPlugin", "Comment:"),
+                    QApplication.translate("DBManagerCommunityPlugin", "Comment:"),
                     self.table.comment,
                 )
             )
@@ -154,7 +154,7 @@ class ORTableInfo(TableInfo):
         if not self.table.isView:
             tbl.append(
                 (
-                    QApplication.translate("DBManagerPlugin", "Rows (estimation):"),
+                    QApplication.translate("DBManagerCommunityPlugin", "Rows (estimation):"),
                     self.table.estimatedRowCount,
                 )
             )
@@ -162,14 +162,14 @@ class ORTableInfo(TableInfo):
             # Add a real count of rows
             tbl.append(
                 (
-                    QApplication.translate("DBManagerPlugin", "Rows (counted):"),
+                    QApplication.translate("DBManagerCommunityPlugin", "Rows (counted):"),
                     self.table.rowCount,
                 )
             )
         else:
             tbl.append(
                 (
-                    QApplication.translate("DBManagerPlugin", "Rows (counted):"),
+                    QApplication.translate("DBManagerCommunityPlugin", "Rows (counted):"),
                     'Unknown (<a href="action:rows/recount">find out</a>)',
                 )
             )
@@ -178,7 +178,7 @@ class ORTableInfo(TableInfo):
         if self.table.creationDate:
             tbl.append(
                 (
-                    QApplication.translate("DBManagerPlugin", "Creation Date:"),
+                    QApplication.translate("DBManagerCommunityPlugin", "Creation Date:"),
                     self.table.creationDate,
                 )
             )
@@ -187,7 +187,7 @@ class ORTableInfo(TableInfo):
             tbl.append(
                 (
                     QApplication.translate(
-                        "DBManagerPlugin", "Last Modification Date:"
+                        "DBManagerCommunityPlugin", "Last Modification Date:"
                     ),
                     self.table.modificationDate,
                 )
@@ -205,9 +205,9 @@ class ORTableInfo(TableInfo):
         elif schema_priv[1] is False:  # no usage privileges on the schema
             tbl.append(
                 (
-                    QApplication.translate("DBManagerPlugin", "Privileges:"),
+                    QApplication.translate("DBManagerCommunityPlugin", "Privileges:"),
                     QApplication.translate(
-                        "DBManagerPlugin",
+                        "DBManagerCommunityPlugin",
                         "<warning> This user doesn't have usage privileges"
                         " for this schema!",
                     ),
@@ -231,11 +231,11 @@ class ORTableInfo(TableInfo):
                 priv_string = ", ".join(privileges)
             else:
                 priv_string = QApplication.translate(
-                    "DBManagerPlugin", "<warning> This user has no privileges!"
+                    "DBManagerCommunityPlugin", "<warning> This user has no privileges!"
                 )
 
             tbl.append(
-                (QApplication.translate("DBManagerPlugin", "Privileges:"), priv_string)
+                (QApplication.translate("DBManagerCommunityPlugin", "Privileges:"), priv_string)
             )
 
         ret.append(HtmlTable(tbl))
@@ -250,7 +250,7 @@ class ORTableInfo(TableInfo):
                 ret.append(
                     HtmlParagraph(
                         QApplication.translate(
-                            "DBManagerPlugin",
+                            "DBManagerCommunityPlugin",
                             "<warning> This user has read-only privileges.",
                         )
                     )
@@ -263,7 +263,7 @@ class ORTableInfo(TableInfo):
                 ret.append(
                     HtmlParagraph(
                         QApplication.translate(
-                            "DBManagerPlugin",
+                            "DBManagerCommunityPlugin",
                             "<warning> No primary key defined for this table!",
                         )
                     )
@@ -278,14 +278,14 @@ class ORTableInfo(TableInfo):
         if not info:
             return
 
-        tbl = [(QApplication.translate("DBManagerPlugin", "Library:"), info[0])]  # ,
+        tbl = [(QApplication.translate("DBManagerCommunityPlugin", "Library:"), info[0])]  # ,
         ret.append(HtmlTable(tbl))
 
         if not self.db.connector.has_geometry_columns:
             ret.append(
                 HtmlParagraph(
                     QApplication.translate(
-                        "DBManagerPlugin",
+                        "DBManagerCommunityPlugin",
                         "<warning> ALL_SDO_GEOM_METADATA table doesn't exist!\n"
                         "This table is essential for many GIS"
                         " applications for enumeration of tables.",
@@ -301,12 +301,12 @@ class ORTableInfo(TableInfo):
         # define the table header
         header = (
             "#",
-            QApplication.translate("DBManagerPlugin", "Name"),
-            QApplication.translate("DBManagerPlugin", "Type"),
-            QApplication.translate("DBManagerPlugin", "Length"),
-            QApplication.translate("DBManagerPlugin", "Null"),
-            QApplication.translate("DBManagerPlugin", "Default"),
-            QApplication.translate("DBManagerPlugin", "Comment"),
+            QApplication.translate("DBManagerCommunityPlugin", "Name"),
+            QApplication.translate("DBManagerCommunityPlugin", "Type"),
+            QApplication.translate("DBManagerCommunityPlugin", "Length"),
+            QApplication.translate("DBManagerCommunityPlugin", "Null"),
+            QApplication.translate("DBManagerCommunityPlugin", "Default"),
+            QApplication.translate("DBManagerCommunityPlugin", "Comment"),
         )
         tbl.append(HtmlTableHeader(header))
 
@@ -343,16 +343,16 @@ class ORTableInfo(TableInfo):
 
         # define the table header
         header = (
-            QApplication.translate("DBManagerPlugin", "Name"),
-            QApplication.translate("DBManagerPlugin", "Type"),
-            QApplication.translate("DBManagerPlugin", "Column"),
-            QApplication.translate("DBManagerPlugin", "Status"),
-            QApplication.translate("DBManagerPlugin", "Validated"),
-            QApplication.translate("DBManagerPlugin", "Generated"),
-            QApplication.translate("DBManagerPlugin", "Check condition"),
-            QApplication.translate("DBManagerPlugin", "Foreign Table"),
-            QApplication.translate("DBManagerPlugin", "Foreign column"),
-            QApplication.translate("DBManagerPlugin", "On Delete"),
+            QApplication.translate("DBManagerCommunityPlugin", "Name"),
+            QApplication.translate("DBManagerCommunityPlugin", "Type"),
+            QApplication.translate("DBManagerCommunityPlugin", "Column"),
+            QApplication.translate("DBManagerCommunityPlugin", "Status"),
+            QApplication.translate("DBManagerCommunityPlugin", "Validated"),
+            QApplication.translate("DBManagerCommunityPlugin", "Generated"),
+            QApplication.translate("DBManagerCommunityPlugin", "Check condition"),
+            QApplication.translate("DBManagerCommunityPlugin", "Foreign Table"),
+            QApplication.translate("DBManagerCommunityPlugin", "Foreign column"),
+            QApplication.translate("DBManagerCommunityPlugin", "On Delete"),
         )
         tbl.append(HtmlTableHeader(header))
 
@@ -383,14 +383,14 @@ class ORTableInfo(TableInfo):
 
         # define the table header
         header = (
-            QApplication.translate("DBManagerPlugin", "Name"),
-            QApplication.translate("DBManagerPlugin", "Column(s)"),
-            QApplication.translate("DBManagerPlugin", "Index Type"),
-            QApplication.translate("DBManagerPlugin", "Status"),
-            QApplication.translate("DBManagerPlugin", "Last analyzed"),
-            QApplication.translate("DBManagerPlugin", "Compression"),
-            QApplication.translate("DBManagerPlugin", "Uniqueness"),
-            QApplication.translate("DBManagerPlugin", "Action"),
+            QApplication.translate("DBManagerCommunityPlugin", "Name"),
+            QApplication.translate("DBManagerCommunityPlugin", "Column(s)"),
+            QApplication.translate("DBManagerCommunityPlugin", "Index Type"),
+            QApplication.translate("DBManagerCommunityPlugin", "Status"),
+            QApplication.translate("DBManagerCommunityPlugin", "Last analyzed"),
+            QApplication.translate("DBManagerCommunityPlugin", "Compression"),
+            QApplication.translate("DBManagerCommunityPlugin", "Uniqueness"),
+            QApplication.translate("DBManagerCommunityPlugin", "Action"),
         )
         tbl.append(HtmlTableHeader(header))
 
@@ -424,10 +424,10 @@ class ORTableInfo(TableInfo):
         tbl = []
         # define the table header
         header = (
-            QApplication.translate("DBManagerPlugin", "Name"),
-            QApplication.translate("DBManagerPlugin", "Event"),
-            QApplication.translate("DBManagerPlugin", "Type"),
-            QApplication.translate("DBManagerPlugin", "Enabled"),
+            QApplication.translate("DBManagerCommunityPlugin", "Name"),
+            QApplication.translate("DBManagerCommunityPlugin", "Event"),
+            QApplication.translate("DBManagerCommunityPlugin", "Type"),
+            QApplication.translate("DBManagerCommunityPlugin", "Enabled"),
         )
         tbl.append(HtmlTableHeader(header))
 
@@ -439,12 +439,12 @@ class ORTableInfo(TableInfo):
 
             if trig.enabled == "ENABLED":
                 enabled, action = (
-                    QApplication.translate("DBManagerPlugin", "Yes"),
+                    QApplication.translate("DBManagerCommunityPlugin", "Yes"),
                     "disable",
                 )
             else:
                 enabled, action = (
-                    QApplication.translate("DBManagerPlugin", "No"),
+                    QApplication.translate("DBManagerCommunityPlugin", "No"),
                     "enable",
                 )
 
@@ -460,7 +460,7 @@ class ORTableInfo(TableInfo):
         ret.append(
             HtmlParagraph(
                 QApplication.translate(
-                    "DBManagerPlugin",
+                    "DBManagerCommunityPlugin",
                     '<a href="action:triggers/enable">'
                     "Enable all triggers</a> / "
                     '<a href="action:triggers/disable">'
@@ -480,7 +480,7 @@ class ORTableInfo(TableInfo):
         else:
             ret.append(
                 HtmlSection(
-                    QApplication.translate("DBManagerPlugin", "General info"),
+                    QApplication.translate("DBManagerCommunityPlugin", "General info"),
                     general_info,
                 )
             )
@@ -493,7 +493,7 @@ class ORTableInfo(TableInfo):
             spatial_info = HtmlContent(spatial_info)
             if not spatial_info.hasContents():
                 spatial_info = QApplication.translate(
-                    "DBManagerPlugin", "<warning> This is not a spatial table."
+                    "DBManagerCommunityPlugin", "<warning> This is not a spatial table."
                 )
             ret.append(
                 HtmlSection(
@@ -508,7 +508,7 @@ class ORTableInfo(TableInfo):
         else:
             ret.append(
                 HtmlSection(
-                    QApplication.translate("DBManagerPlugin", "Fields"), fields_details
+                    QApplication.translate("DBManagerCommunityPlugin", "Fields"), fields_details
                 )
             )
 
@@ -519,7 +519,7 @@ class ORTableInfo(TableInfo):
         else:
             ret.append(
                 HtmlSection(
-                    QApplication.translate("DBManagerPlugin", "Constraints"),
+                    QApplication.translate("DBManagerCommunityPlugin", "Constraints"),
                     constraints_details,
                 )
             )
@@ -531,7 +531,7 @@ class ORTableInfo(TableInfo):
         else:
             ret.append(
                 HtmlSection(
-                    QApplication.translate("DBManagerPlugin", "Indexes"),
+                    QApplication.translate("DBManagerCommunityPlugin", "Indexes"),
                     indexes_details,
                 )
             )
@@ -543,7 +543,7 @@ class ORTableInfo(TableInfo):
         else:
             ret.append(
                 HtmlSection(
-                    QApplication.translate("DBManagerPlugin", "Triggers"),
+                    QApplication.translate("DBManagerCommunityPlugin", "Triggers"),
                     triggers_details,
                 )
             )
@@ -553,7 +553,7 @@ class ORTableInfo(TableInfo):
             ret.append(
                 HtmlSection(
                     QApplication.translate(
-                        "DBManagerPlugin", "Materialized View information"
+                        "DBManagerCommunityPlugin", "Materialized View information"
                     ),
                     mview_info,
                 )
@@ -569,38 +569,38 @@ class ORTableInfo(TableInfo):
         tbl = []
         values = self.table.getMViewInfo()
         tbl.append(
-            (QApplication.translate("DBManagerPlugin", "Refresh Mode:"), values[0])
+            (QApplication.translate("DBManagerCommunityPlugin", "Refresh Mode:"), values[0])
         )
         tbl.append(
-            (QApplication.translate("DBManagerPlugin", "Refresh Method:"), values[1])
+            (QApplication.translate("DBManagerCommunityPlugin", "Refresh Method:"), values[1])
         )
         tbl.append(
-            (QApplication.translate("DBManagerPlugin", "Build Mode:"), values[2])
+            (QApplication.translate("DBManagerCommunityPlugin", "Build Mode:"), values[2])
         )
         tbl.append(
-            (QApplication.translate("DBManagerPlugin", "Last Refresh Date:"), values[5])
+            (QApplication.translate("DBManagerCommunityPlugin", "Last Refresh Date:"), values[5])
         )
         tbl.append(
-            (QApplication.translate("DBManagerPlugin", "Last Refresh Type:"), values[4])
+            (QApplication.translate("DBManagerCommunityPlugin", "Last Refresh Type:"), values[4])
         )
         tbl.append(
-            (QApplication.translate("DBManagerPlugin", "Fast Refreshable:"), values[3])
+            (QApplication.translate("DBManagerCommunityPlugin", "Fast Refreshable:"), values[3])
         )
-        tbl.append((QApplication.translate("DBManagerPlugin", "Staleness:"), values[6]))
+        tbl.append((QApplication.translate("DBManagerCommunityPlugin", "Staleness:"), values[6]))
         tbl.append(
-            (QApplication.translate("DBManagerPlugin", "Stale since:"), values[7])
-        )
-        tbl.append(
-            (QApplication.translate("DBManagerPlugin", "Compile State:"), values[8])
+            (QApplication.translate("DBManagerCommunityPlugin", "Stale since:"), values[7])
         )
         tbl.append(
-            (QApplication.translate("DBManagerPlugin", "Use no index:"), values[9])
+            (QApplication.translate("DBManagerCommunityPlugin", "Compile State:"), values[8])
+        )
+        tbl.append(
+            (QApplication.translate("DBManagerCommunityPlugin", "Use no index:"), values[9])
         )
         tbl.append(
             (
                 '<a href="action:mview/refresh">{}</a>'.format(
                     QApplication.translate(
-                        "DBManagerPlugin", "Refresh the materialized view"
+                        "DBManagerCommunityPlugin", "Refresh the materialized view"
                     )
                 ),
                 "",
@@ -634,7 +634,7 @@ class ORTableInfo(TableInfo):
             else:
                 title = "Materialized View Definition"
             ret.append(
-                HtmlSection(QApplication.translate("DBManagerPlugin", title), result)
+                HtmlSection(QApplication.translate("DBManagerCommunityPlugin", title), result)
             )
 
         return ret
@@ -659,15 +659,15 @@ class ORVectorTableInfo(ORTableInfo, VectorTableInfo):
 
         tbl = [
             (
-                QApplication.translate("DBManagerPlugin", "Column:"),
+                QApplication.translate("DBManagerCommunityPlugin", "Column:"),
                 self.table.geomColumn,
             ),
             (
-                QApplication.translate("DBManagerPlugin", "Geometry:"),
+                QApplication.translate("DBManagerCommunityPlugin", "Geometry:"),
                 self.table.geomType,
             ),
             (
-                QApplication.translate("DBManagerPlugin", "QGIS Geometry type:"),
+                QApplication.translate("DBManagerCommunityPlugin", "QGIS Geometry type:"),
                 QgsWkbTypes.displayString(self.table.wkbType),
             ),
         ]
@@ -676,7 +676,7 @@ class ORVectorTableInfo(ORTableInfo, VectorTableInfo):
         if self.table.geomDim:
             tbl.append(
                 (
-                    QApplication.translate("DBManagerPlugin", "Dimension:"),
+                    QApplication.translate("DBManagerCommunityPlugin", "Dimension:"),
                     self.table.geomDim,
                 )
             )
@@ -685,11 +685,11 @@ class ORVectorTableInfo(ORTableInfo, VectorTableInfo):
         if srid != -1:
             sr_info = self.table.database().connector.getSpatialRefInfo(srid)
         else:
-            sr_info = QApplication.translate("DBManagerPlugin", "Undefined")
+            sr_info = QApplication.translate("DBManagerCommunityPlugin", "Undefined")
         if sr_info:
             tbl.append(
                 (
-                    QApplication.translate("DBManagerPlugin", "Spatial ref:"),
+                    QApplication.translate("DBManagerCommunityPlugin", "Spatial ref:"),
                     f"{sr_info} ({srid})",
                 )
             )
@@ -710,7 +710,7 @@ class ORVectorTableInfo(ORTableInfo, VectorTableInfo):
 
             tbl.append(
                 (
-                    QApplication.translate("DBManagerPlugin", "Estimated extent:"),
+                    QApplication.translate("DBManagerCommunityPlugin", "Estimated extent:"),
                     estimated_extent_str,
                 )
             )
@@ -725,13 +725,13 @@ class ORVectorTableInfo(ORTableInfo, VectorTableInfo):
         ):
             # Can't calculate an extent on empty layer
             extent_str = QApplication.translate(
-                "DBManagerPlugin",
+                "DBManagerCommunityPlugin",
                 '(unknown) (<a href="action:extent/get">find out</a>)',
             )
 
         if extent_str:
             tbl.append(
-                (QApplication.translate("DBManagerPlugin", "Extent:"), extent_str)
+                (QApplication.translate("DBManagerCommunityPlugin", "Extent:"), extent_str)
             )
 
         ret.append(HtmlTable(tbl))
@@ -745,7 +745,7 @@ class ORVectorTableInfo(ORTableInfo, VectorTableInfo):
             ret.append(
                 HtmlParagraph(
                     QApplication.translate(
-                        "DBManagerPlugin",
+                        "DBManagerCommunityPlugin",
                         "<warning> Metadata extent is different from"
                         ' real extent. You should <a href="action:extent'
                         '/update">update it</a>!',
@@ -758,7 +758,7 @@ class ORVectorTableInfo(ORTableInfo, VectorTableInfo):
             ret.append(
                 HtmlParagraph(
                     QApplication.translate(
-                        "DBManagerPlugin",
+                        "DBManagerCommunityPlugin",
                         "<warning> There is no entry in geometry_columns!",
                     )
                 )
@@ -770,7 +770,7 @@ class ORVectorTableInfo(ORTableInfo, VectorTableInfo):
                 ret.append(
                     HtmlParagraph(
                         QApplication.translate(
-                            "DBManagerPlugin",
+                            "DBManagerCommunityPlugin",
                             "<warning> No spatial index defined (<a href="
                             '"action:spatialindex/create">'
                             "create it</a>).",

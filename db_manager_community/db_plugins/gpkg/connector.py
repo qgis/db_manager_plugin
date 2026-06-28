@@ -81,14 +81,14 @@ class GPKGDBConnector(DBConnector):
                 self.gdal_ds = gdal.OpenEx(self.dbname)
             except Exception:
                 raise ConnectionError(
-                    QApplication.translate("DBManagerPlugin", '"{0}" not found').format(
+                    QApplication.translate("DBManagerCommunityPlugin", '"{0}" not found').format(
                         self.dbname
                     )
                 )
         if self.gdal_ds.GetDriver().ShortName != "GPKG":
             raise ConnectionError(
                 QApplication.translate(
-                    "DBManagerPlugin",
+                    "DBManagerCommunityPlugin",
                     '"{dbname}" not recognized as GPKG ({shortname} reported instead.)',
                 ).format(
                     dbname=self.dbname, shortname=self.gdal_ds.GetDriver().ShortName

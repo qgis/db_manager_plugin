@@ -31,7 +31,7 @@ class GPKGDatabaseInfo(DatabaseInfo):
     def connectionDetails(self):
         tbl = [
             (
-                QApplication.translate("DBManagerPlugin", "Filename:"),
+                QApplication.translate("DBManagerCommunityPlugin", "Filename:"),
                 self.db.connector.dbname,
             )
         ]

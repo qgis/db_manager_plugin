@@ -34,15 +34,15 @@ class PGDatabaseInfo(DatabaseInfo):
     def connectionDetails(self):
         tbl = [
             (
-                QApplication.translate("DBManagerPlugin", "Host:"),
+                QApplication.translate("DBManagerCommunityPlugin", "Host:"),
                 self.db.connector.host,
             ),
             (
-                QApplication.translate("DBManagerPlugin", "User:"),
+                QApplication.translate("DBManagerCommunityPlugin", "User:"),
                 self.db.connector.user,
             ),
             (
-                QApplication.translate("DBManagerPlugin", "Database:"),
+                QApplication.translate("DBManagerCommunityPlugin", "Database:"),
                 self.db.connector.dbname,
             ),
         ]
@@ -67,32 +67,32 @@ class PGTableInfo(TableInfo):
 
         tbl = [
             (
-                QApplication.translate("DBManagerPlugin", "Relation type:"),
+                QApplication.translate("DBManagerCommunityPlugin", "Relation type:"),
                 (
-                    QApplication.translate("DBManagerPlugin", "View")
+                    QApplication.translate("DBManagerCommunityPlugin", "View")
                     if self.table._relationType == "v"
                     else (
-                        QApplication.translate("DBManagerPlugin", "Materialized view")
+                        QApplication.translate("DBManagerCommunityPlugin", "Materialized view")
                         if self.table._relationType == "m"
-                        else QApplication.translate("DBManagerPlugin", "Table")
+                        else QApplication.translate("DBManagerCommunityPlugin", "Table")
                     )
                 ),
             ),
-            (QApplication.translate("DBManagerPlugin", "Owner:"), self.table.owner),
+            (QApplication.translate("DBManagerCommunityPlugin", "Owner:"), self.table.owner),
         ]
         if self.table.comment:
             tbl.append(
                 (
-                    QApplication.translate("DBManagerPlugin", "Comment:"),
+                    QApplication.translate("DBManagerCommunityPlugin", "Comment:"),
                     self.table.comment,
                 )
             )
 
         tbl.extend(
             [
-                (QApplication.translate("DBManagerPlugin", "Pages:"), self.table.pages),
+                (QApplication.translate("DBManagerCommunityPlugin", "Pages:"), self.table.pages),
                 (
-                    QApplication.translate("DBManagerPlugin", "Rows (estimation):"),
+                    QApplication.translate("DBManagerCommunityPlugin", "Rows (estimation):"),
                     self.table.estimatedRowCount,
                 ),
             ]
@@ -110,9 +110,9 @@ class PGTableInfo(TableInfo):
         elif not schema_priv[1]:  # no usage privileges on the schema
             tbl.append(
                 (
-                    QApplication.translate("DBManagerPlugin", "Privileges:"),
+                    QApplication.translate("DBManagerCommunityPlugin", "Privileges:"),
                     QApplication.translate(
-                        "DBManagerPlugin",
+                        "DBManagerCommunityPlugin",
                         "<warning> This user doesn't have usage privileges for this schema!",
                     ),
                 )
@@ -129,13 +129,13 @@ class PGTableInfo(TableInfo):
                     tbl.append(
                         (
                             QApplication.translate(
-                                "DBManagerPlugin", "Rows (counted):"
+                                "DBManagerCommunityPlugin", "Rows (counted):"
                             ),
                             (
                                 self.table.rowCount
                                 if self.table.rowCount is not None
                                 else QApplication.translate(
-                                    "DBManagerPlugin",
+                                    "DBManagerCommunityPlugin",
                                     'Unknown (<a href="action:rows/count">find out</a>)',
                                 )
                             ),
@@ -152,11 +152,11 @@ class PGTableInfo(TableInfo):
                 ", ".join(privileges)
                 if len(privileges) > 0
                 else QApplication.translate(
-                    "DBManagerPlugin", "<warning> This user has no privileges!"
+                    "DBManagerCommunityPlugin", "<warning> This user has no privileges!"
                 )
             )
             tbl.append(
-                (QApplication.translate("DBManagerPlugin", "Privileges:"), priv_string)
+                (QApplication.translate("DBManagerCommunityPlugin", "Privileges:"), priv_string)
             )
 
         ret.append(HtmlTable(tbl))
@@ -171,7 +171,7 @@ class PGTableInfo(TableInfo):
                 ret.append(
                     HtmlParagraph(
                         QApplication.translate(
-                            "DBManagerPlugin",
+                            "DBManagerCommunityPlugin",
                             "<warning> This user has read-only privileges.",
                         )
                     )
@@ -186,7 +186,7 @@ class PGTableInfo(TableInfo):
                     ret.append(
                         HtmlParagraph(
                             QApplication.translate(
-                                "DBManagerPlugin",
+                                "DBManagerCommunityPlugin",
                                 "<warning> There's a significant difference between estimated and real row count. "
                                 'Consider running <a href="action:vacuumanalyze/run">VACUUM ANALYZE</a>.',
                             )
@@ -199,7 +199,7 @@ class PGTableInfo(TableInfo):
                 ret.append(
                     HtmlParagraph(
                         QApplication.translate(
-                            "DBManagerPlugin",
+                            "DBManagerCommunityPlugin",
                             "<warning> No primary key defined for this table!",
                         )
                     )
@@ -215,8 +215,8 @@ class PGTableInfo(TableInfo):
             return
 
         tbl = [
-            (QApplication.translate("DBManagerPlugin", "Library:"), info[0]),
-            (QApplication.translate("DBManagerPlugin", "Scripts:"), info[3]),
+            (QApplication.translate("DBManagerCommunityPlugin", "Library:"), info[0]),
+            (QApplication.translate("DBManagerCommunityPlugin", "Scripts:"), info[3]),
             ("GEOS:", info[1]),
             ("Proj:", info[2]),
         ]
@@ -226,7 +226,7 @@ class PGTableInfo(TableInfo):
             ret.append(
                 HtmlParagraph(
                     QApplication.translate(
-                        "DBManagerPlugin",
+                        "DBManagerCommunityPlugin",
                         "<warning> Version of installed scripts doesn't match version of released scripts!\n"
                         "This is probably a result of incorrect PostgreSQL upgrade.",
                     )
@@ -237,7 +237,7 @@ class PGTableInfo(TableInfo):
             ret.append(
                 HtmlParagraph(
                     QApplication.translate(
-                        "DBManagerPlugin",
+                        "DBManagerCommunityPlugin",
                         "<warning> geometry_columns table doesn't exist!\n"
                         "This table is essential for many GIS applications for enumeration of tables.",
                     )
@@ -247,7 +247,7 @@ class PGTableInfo(TableInfo):
             ret.append(
                 HtmlParagraph(
                     QApplication.translate(
-                        "DBManagerPlugin",
+                        "DBManagerCommunityPlugin",
                         "<warning> This user doesn't have privileges to read contents of geometry_columns table!\n"
                         "This table is essential for many GIS applications for enumeration of tables.",
                     )
@@ -262,12 +262,12 @@ class PGTableInfo(TableInfo):
         # define the table header
         header = (
             "#",
-            QApplication.translate("DBManagerPlugin", "Name"),
-            QApplication.translate("DBManagerPlugin", "Type"),
-            QApplication.translate("DBManagerPlugin", "Length"),
-            QApplication.translate("DBManagerPlugin", "Null"),
-            QApplication.translate("DBManagerPlugin", "Default"),
-            QApplication.translate("DBManagerPlugin", "Comment"),
+            QApplication.translate("DBManagerCommunityPlugin", "Name"),
+            QApplication.translate("DBManagerCommunityPlugin", "Type"),
+            QApplication.translate("DBManagerCommunityPlugin", "Length"),
+            QApplication.translate("DBManagerCommunityPlugin", "Null"),
+            QApplication.translate("DBManagerCommunityPlugin", "Default"),
+            QApplication.translate("DBManagerCommunityPlugin", "Comment"),
         )
         tbl.append(HtmlTableHeader(header))
 
@@ -307,10 +307,10 @@ class PGTableInfo(TableInfo):
         tbl = []
         # define the table header
         header = (
-            QApplication.translate("DBManagerPlugin", "Name"),
-            QApplication.translate("DBManagerPlugin", "Function"),
-            QApplication.translate("DBManagerPlugin", "Type"),
-            QApplication.translate("DBManagerPlugin", "Enabled"),
+            QApplication.translate("DBManagerCommunityPlugin", "Name"),
+            QApplication.translate("DBManagerCommunityPlugin", "Function"),
+            QApplication.translate("DBManagerCommunityPlugin", "Type"),
+            QApplication.translate("DBManagerCommunityPlugin", "Enabled"),
         )
         tbl.append(HtmlTableHeader(header))
 
@@ -323,9 +323,9 @@ class PGTableInfo(TableInfo):
             )
 
             (enabled, action) = (
-                (QApplication.translate("DBManagerPlugin", "Yes"), "disable")
+                (QApplication.translate("DBManagerCommunityPlugin", "Yes"), "disable")
                 if trig.enabled
-                else (QApplication.translate("DBManagerPlugin", "No"), "enable")
+                else (QApplication.translate("DBManagerCommunityPlugin", "No"), "enable")
             )
             txt_enabled = f'{enabled} (<a href="action:trigger/{trig.name}/{action}">{action}</a>)'
 
@@ -336,7 +336,7 @@ class PGTableInfo(TableInfo):
         ret.append(
             HtmlParagraph(
                 QApplication.translate(
-                    "DBManagerPlugin",
+                    "DBManagerCommunityPlugin",
                     '<a href="action:triggers/enable">Enable all triggers</a> / <a href="action:triggers/disable">Disable all triggers</a>',
                 )
             )
@@ -350,8 +350,8 @@ class PGTableInfo(TableInfo):
         tbl = []
         # define the table header
         header = (
-            QApplication.translate("DBManagerPlugin", "Name"),
-            QApplication.translate("DBManagerPlugin", "Definition"),
+            QApplication.translate("DBManagerCommunityPlugin", "Name"),
+            QApplication.translate("DBManagerCommunityPlugin", "Definition"),
         )
         tbl.append(HtmlTableHeader(header))
 
@@ -374,7 +374,7 @@ class PGTableInfo(TableInfo):
         else:
             ret.append(
                 HtmlSection(
-                    QApplication.translate("DBManagerPlugin", "Rules"), rules_details
+                    QApplication.translate("DBManagerCommunityPlugin", "Rules"), rules_details
                 )
             )
 

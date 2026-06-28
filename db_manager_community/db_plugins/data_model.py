@@ -182,7 +182,7 @@ class SqlResultModelAsync(QObject):
 class SqlResultModelTask(QgsTask):
     def __init__(self, db, sql, parent):
         super().__init__(
-            description=QApplication.translate("DBManagerPlugin", "Executing SQL")
+            description=QApplication.translate("DBManagerCommunityPlugin", "Executing SQL")
         )
         self.db = db
         self.sql = sql
@@ -346,9 +346,9 @@ class TableConstraintsModel(SimpleTableModel):
         SimpleTableModel.__init__(
             self,
             [
-                QApplication.translate("DBManagerPlugin", "Name"),
-                QApplication.translate("DBManagerPlugin", "Type"),
-                QApplication.translate("DBManagerPlugin", "Column(s)"),
+                QApplication.translate("DBManagerCommunityPlugin", "Name"),
+                QApplication.translate("DBManagerCommunityPlugin", "Type"),
+                QApplication.translate("DBManagerCommunityPlugin", "Column(s)"),
             ],
             editable,
             parent,
@@ -386,8 +386,8 @@ class TableIndexesModel(SimpleTableModel):
         SimpleTableModel.__init__(
             self,
             [
-                QApplication.translate("DBManagerPlugin", "Name"),
-                QApplication.translate("DBManagerPlugin", "Column(s)"),
+                QApplication.translate("DBManagerCommunityPlugin", "Name"),
+                QApplication.translate("DBManagerCommunityPlugin", "Column(s)"),
             ],
             editable,
             parent,

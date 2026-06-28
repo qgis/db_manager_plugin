@@ -24,7 +24,7 @@ from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction, QApplication
 
 
-class DBManagerPlugin:
+class DBManagerCommunityPlugin:
     def __init__(self, iface):
         self.iface = iface
         self.dlg = None
@@ -32,7 +32,7 @@ class DBManagerPlugin:
     def initGui(self):
         self.action = QAction(
             QgsApplication.getThemeIcon("dbmanager.svg"),
-            QApplication.translate("DBManagerPlugin", "DB Manager…"),
+            QApplication.translate("DBManagerCommunityPlugin", "DB Manager…"),
             self.iface.mainWindow(),
         )
 
@@ -45,11 +45,11 @@ class DBManagerPlugin:
             self.iface.addToolBarIcon(self.action)
         if hasattr(self.iface, "addPluginToDatabaseMenu"):
             self.iface.addPluginToDatabaseMenu(
-                QApplication.translate("DBManagerPlugin", None), self.action
+                QApplication.translate("DBManagerCommunityPlugin", None), self.action
             )
         else:
             self.iface.addPluginToMenu(
-                QApplication.translate("DBManagerPlugin", "DB Manager"), self.action
+                QApplication.translate("DBManagerCommunityPlugin", "DB Manager"), self.action
             )
 
     def unload(self):
@@ -58,7 +58,7 @@ class DBManagerPlugin:
             self.iface.databaseMenu().removeAction(self.action)
         else:
             self.iface.removePluginMenu(
-                QApplication.translate("DBManagerPlugin", "DB Manager"), self.action
+                QApplication.translate("DBManagerCommunityPlugin", "DB Manager"), self.action
             )
         if hasattr(self.iface, "removeDatabaseToolBarIcon"):
             self.iface.removeDatabaseToolBarIcon(self.action)

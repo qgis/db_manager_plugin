@@ -33,7 +33,7 @@ class LDatabaseInfo(DatabaseInfo):
 
     def generalInfo(self):
         self.db.connector.getInfo()
-        tbl = [(QApplication.translate("DBManagerPlugin", "SQLite version:"), "3")]
+        tbl = [(QApplication.translate("DBManagerCommunityPlugin", "SQLite version:"), "3")]
         return HtmlTable(tbl)
 
     def privilegesDetails(self):

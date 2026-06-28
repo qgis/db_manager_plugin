@@ -30,10 +30,10 @@ from qgis.PyQt.QtWidgets import QAction, QApplication
 def load(db, mainwindow):
     # add the action to the DBManager menu
     action = QAction(
-        QIcon(), QApplication.translate("DBManagerPlugin", "&Change Logging…"), db
+        QIcon(), QApplication.translate("DBManagerCommunityPlugin", "&Change Logging…"), db
     )
     mainwindow.registerAction(
-        action, QApplication.translate("DBManagerPlugin", "&Table"), run
+        action, QApplication.translate("DBManagerCommunityPlugin", "&Table"), run
     )
 
 
